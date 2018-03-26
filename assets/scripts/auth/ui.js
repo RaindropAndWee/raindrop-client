@@ -20,8 +20,9 @@ const signInSuccess = function (data) {
   console.log('Sign In Success')
 }
 
-const signInFailure = function () {
+const signInFailure = function (error) {
   $('#sign-in').get(0).reset()
+  console.error(error)
   console.log('Sign In Error')
 }
 

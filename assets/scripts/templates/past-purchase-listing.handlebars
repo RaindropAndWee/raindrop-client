@@ -1,0 +1,28 @@
+
+<h2>Past Purchases:</h2>
+{{#each pastPurchases as |pastPurchase|}}
+
+<h3>
+  Purchase Date: {{pastPurchase.updatedAt}}
+</h3>
+  <ul>
+    <li>
+        ID: {{pastPurchase._id}}
+    </li>
+    <li>
+        Products:
+        <ul>
+        {{#each pastPurchase.cartProducts as |cartProduct|}}
+
+        <h4>{{cartProduct.name}}</h4>
+        <li>
+        Price: {{cartProduct.price}}
+        </li>
+        {{/each}}
+      </ul>
+    </li>
+    <h3>
+      Total: ${{pastPurchase.total}}
+    </h3>
+  </ul>
+{{/each}}

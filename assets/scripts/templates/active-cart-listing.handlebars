@@ -1,0 +1,24 @@
+
+<h2>Active Shopping Cart:</h2>
+{{#each cartProducts as |cartProduct|}}
+
+  <ul>
+    <h1 data-id="{{cartProduct._id}}">
+      <small>
+        {{cartProduct.name}}
+      </small>
+    </h1>
+    <li>
+        ID: {{cartProduct._id}}
+    </li>
+    <li>
+      Description: {{cartProduct.description}}
+    </li>
+    <li>
+        Price: ${{cartProduct.price}}
+    </li>
+        <button class="remove-from-cart btn btn-primary" data-id={{cartProduct._id}}>
+          Remove from Cart
+        </button>
+  </ul>
+{{/each}}

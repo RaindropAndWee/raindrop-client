@@ -2,17 +2,25 @@
 
   <ul>
     <li>
-      <h1 data-id="{{product.id}}">
+      <h1 data-id="{{product._id}}">
         <small>
           {{product.name}}
         </small>
       </h1>
     </li>
     <li>
+        ID: {{product._id}}
+    </li>
+    <li>
         Price: ${{product.price}}
     </li>
     <li>
         Description: {{product.description}}
+    </li>
+    <li>
+        <button class="add-to-cart" data-id={{product._id}}>
+          Add to Cart
+        </button>
     </li>
   </ul>
 

@@ -10,6 +10,7 @@
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+
     </head>
     <body>
       <!--NAVBAR Start -->
@@ -31,8 +32,8 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#" id="profile-button" data-toggle="modal" data-target="#user-profile">Account</a></li>
-              <li><a href="#" id="shopping-cart" data-toggle="modal" data-target="#user-profile">Cart</a></li>
-              <li><a href="#" class="sign-up"data-toggle="modal" data-target="#sign-up-modal">Sign Up</a></li>
+              <li><a href="#" id="shopping-cart" data-toggle="modal" data-target="#cart-modal">Cart</a></li>
+              <li><a href="#" class="sign-up" data-toggle="modal" data-target="#sign-up-modal">Sign Up</a></li>
               <li><a href="#" class="change-password"data-toggle="modal" data-target="#change-password-modal">Change Password</a></li>
               <li><a href="#" id="sign-out" class="sign-out">Sign Out</a></li>
             </ul>
@@ -43,6 +44,30 @@
 <!-- NAVBAR End -->
 
 <div class="container">
+
+  <!-- Cart MODAL Start-->
+      <div class="modal fade" id="cart-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" id="cart-inner" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div id="active-cart-content">
+              </div>
+              <div id="active-cart-total">
+              </div>
+              <button class="btn btn-primary" id="submit-purchase-stripe">Submit Purchase</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Cart MODAL End-->
+
   <!-- SIGN UP MODAL Start-->
       <div class="modal fade" id="sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" id="sign-up-inner" role="document">
@@ -115,7 +140,7 @@
           </div>
           <!-- Change Password MODAL End-->
 
-          <div class="col-sm-6" style="min-height: 300px; background-color: #ededed;">
+          <div class="col-sm-12" style="min-height: 300px; background-color: #ededed;">
             <form id="sign-in" class="col-sm-12">
               <h2>Sign In</h2>
               <div class="form-group" style="padding-left: 0px;">
@@ -130,14 +155,7 @@
               <div style="float: right;" id="message"></div>
             </form>
           </div>
-          <div class="col-sm-6" style="min-height: 300px; background-color: #d8d8d8;">
-            <!-- hey -->
-          </div>
-          <div class="col-sm-6" style="min-height: 300px; background-color: #d8d8d8;">
-            <!-- hey -->
-          </div>
-          <div class="col-sm-6" style="min-height: 300px; background-color: #ededed;">
-          </div>
+
           <!-- All Products Form: -->
           <div class="col-sm-12" style="min-height:100px;">
             <button id="see-all-products" type="button" class="btn btn-primary center-block" style="margin-top:30px;">
@@ -146,6 +164,25 @@
           </div>
           <div id="all-products-content">
           </div>
+
+          <!-- GET Active Cart Button -->
+          <!-- <div class="col-sm-12" style="min-height: 300px; background-color: #ededed;">
+            <button id="see-active-cart" type="button" class="btn btn-primary center-block" style="margin-top:30px;">
+              See Active Cart
+            </button>
+          <div id="active-cart-content">
+          </div>
+          <div id="active-cart-total">
+          </div>
+        </div> -->
+
+        <!-- GET Past Purchases Button -->
+        <div class="col-sm-12" style="min-height: 300px;">
+          <button id="see-past-purchases" type="button" class="btn btn-primary center-block">
+            See Past Purchases
+          </button>
+        <div id="past-purchases-content">
+      </div>
 
           <!-- GET All Carts Form -->
           <div class="col-sm-12" style="min-height:100px;">
@@ -159,7 +196,7 @@
           <!-- GET One Cart Form -->
           <form class="navbar-form" id="get-one-cart">
             <div class="form-group">
-              Get one Cart
+              <h2>Get one Cart</h2>
               <input type="text" class="form-control" placeholder="Load cart by ID">
             </div>
             <button type="submit" class="blue-btn btn btn-default navbar-btn">Submit</button>

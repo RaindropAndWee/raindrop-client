@@ -1,8 +1,11 @@
 'use strict'
 
 const api = require('./api')
+const cartApi = require('../carts/api')
+const productApi = require('../products/api')
 const getFormFields = require('../../../lib/get-form-fields')
 const ui = require('./ui')
+const cartParse = require('../carts/cartParse')
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -19,6 +22,10 @@ const onSignIn = function (event) {
   const data = getFormFields(this)
   api.signIn(data)
     .then(ui.signInSuccess)
+    .then(productApi.getProducts)
+    .then(cartParse.setAllProducts)
+    .then(cartApi.getCarts)
+    .then(cartParse.setAllLocalCarts)
     .catch(ui.signInFailure)
 }
 
