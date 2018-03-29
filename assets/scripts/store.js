@@ -1,7 +1,8 @@
 'use strict'
 
 const store = {
-  signedIn: false
+  signedIn: false,
+  currentProductCategory: 'all'
 }
 
 module.exports = store

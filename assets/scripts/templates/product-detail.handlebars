@@ -1,0 +1,33 @@
+
+<!-- <h3>{{product}}</h3> -->
+<div class="container">
+  <div class="col-sm-12">
+    <h2 class="bread-crumbs" style="font-size: 14px;">
+
+      <a class="all-products-breadcrumb" href="#">Products</a>
+
+         /
+
+      <a class="product-category-breadcrumb" href="#" data-id="{{product.category}}" >{{product.category}}</a>
+
+       / {{product.name}}</h2>
+  </div>
+<div class="col-md-6 product-detail-image" style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1)), url({{product.imageUrl}}); background-size: 120%; background-position: center; background-repeat: no-repeat;">
+</div>
+<div class="col-md-4">
+  <h1>{{product.name}}</h1>
+  <h3>${{product.price}}</h3>
+  <p>{{product.description}}</p>
+  <button class="add-to-cart btn btn-primary add-to-cart-button" data-id={{product._id}}>
+    Add to Cart
+  </button>
+  <button class="add-to-cart btn btn-primary sign-in-to-buy" data-toggle="modal" data-target="#sign-in-modal">
+    Sign in to Buy
+  </button>
+</div>
+<div class="col-sm-12 text-center" style="margin: 20px;">
+  <h4>
+  Customers who viewed this definitely also <i>bought</i> some of these...
+</h4>
+</div>
+</div>

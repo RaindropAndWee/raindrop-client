@@ -1,27 +1,39 @@
-
 {{#each pastPurchases as |pastPurchase|}}
 
-<h3>
-  Purchase Date: {{pastPurchase.updatedAt}}
+  <hr>
+  <h3>
+{{pastPurchase.updatedAt}}
 </h3>
-  <ul>
-    <li>
-        ID: {{pastPurchase._id}}
-    </li>
-    <li>
-        Products:
-        <ul>
-        {{#each pastPurchase.cartProducts as |cartProduct|}}
-
-        <h4>{{cartProduct.name}}</h4>
-        <li>
-        Price: {{cartProduct.price}}
-        </li>
-        {{/each}}
-      </ul>
-    </li>
-    <h3>
+  <div style="margin-left: 1vw">
+      {{#each pastPurchase.cartProducts as |cartProduct|}}
+        <div class="row">
+          <div class="col-xs-2 past-cart-product-image" style="background: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, .1)), url({{cartProduct.imageUrl}}); background-position: center; background-size: 100%; background-repeat: no-repeat">
+</div>
+          <div class="col-md-4">
+            <h4 style="margin-bottom: 2px;">{{cartProduct.name}}</h4>
+            <small>
+        Quantity: {{cartProduct.quantity}}
+      </small>
+          </div>
+          <div class="col-md-4">
+            <h3 class="past-cart-product-price">
+      <small>
+      ${{cartProduct.price}}
+    </small>
+  </h3>
+          </div>
+        </div>
+      {{/each}}
+      <div class="row" style="margin-bottom: 45px;">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+    <h4 class="past-cart-total">
       Total: ${{pastPurchase.total}}
-    </h3>
-  </ul>
+    </h4>
+  </div>
+  </div>
+  </div>
 {{/each}}

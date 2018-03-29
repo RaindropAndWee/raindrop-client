@@ -1,11 +1,18 @@
 {{#each products as |product|}}
-<div class="col-lg-3 col-md-4 col-sm-6 text-center product-tile" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, .8)), url({{product.imageUrl}}); background-position: center; background-size: 120%;">
-      <h3 data-id="{{product._id}}">
-          {{product.name}}
+<a href="#">
+<div class="col-lg-3 col-md-4 col-sm-6 text-center product-tile"
+style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, .8)), url({{product.imageUrl}}); background-position: center; background-size: 120%;" data-id="{{product._id}}" category="{{product.category}}">
+      <h3>
+          <a href="#" data-id="{{product._id}}" class="product-detail">{{product.name}}</a>
       </h3>
         <p>
+          <!-- {{product.category}}
+          <br> -->
           {{product.description}}
         </p>
+        <!-- <p>
+          {{product._id}}
+        </p> -->
         <h4>
         Price: ${{product.price}}
       </h4>
@@ -16,4 +23,5 @@
           Sign in to Buy
         </button>
 </div>
+</a>
 {{/each}}

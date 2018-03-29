@@ -1,24 +1,26 @@
 
-<h2>Active Shopping Cart:</h2>
 {{#each cartProducts as |cartProduct|}}
-
-  <ul>
-    <h1 data-id="{{cartProduct._id}}">
-      <small>
-        {{cartProduct.name}}
-      </small>
-    </h1>
-    <li>
-        ID: {{cartProduct._id}}
-    </li>
-    <li>
-      Description: {{cartProduct.description}}
-    </li>
-    <li>
-        Price: ${{cartProduct.price}}
-    </li>
-        <button class="remove-from-cart btn btn-primary" data-id={{cartProduct._id}}>
-          Remove from Cart
-        </button>
-  </ul>
+<div class="row">
+  <div class="col-xs-4 cart-product-image" style="background: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, .1)), url({{cartProduct.imageUrl}}); background-position: center; background-size: 100%; background-repeat: no-repeat">
+  </div>
+  <div class="col-xs-6"
+    <ul>
+      <h3 data-id="{{cartProduct._id}}">
+          {{cartProduct.name}}
+      </h3>
+      <p><i>
+        {{cartProduct.description}}
+      </i>
+      </p>
+      <h5>
+          Quantity: {{cartProduct.quantity}}
+        </h5>
+          <h4>
+          Price: ${{cartProduct.price}}
+          </h4>
+          <button class="remove-from-cart btn btn-primary" data-id={{cartProduct._id}}>
+            Remove One Item
+          </button>
+  </div>
+</div>
 {{/each}}

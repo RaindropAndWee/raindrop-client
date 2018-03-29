@@ -47,15 +47,17 @@ const onSignOut = function (event) {
 }
 
 const onGetAccount = function (event) {
-  console.log('hey')
+  // console.log('hey')
   $('#user-account').show()
   $('#all-products-content, #intro-header, #intro-see-all-products, #intro-about-raindrop').hide()
 }
 
 const onBackHome = function (event) {
-  console.log('hey')
+  // console.log('hey')
   $('#intro-header, #intro-see-all-products, #intro-about-raindrop').show()
   $('#all-products-content').hide()
+  $('#product-detail-content').hide()
+  $('#user-account').hide()
 }
 
 const addHandlers = () => {

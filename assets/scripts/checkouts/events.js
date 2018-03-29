@@ -20,14 +20,22 @@ const store = require('../store')
 // Also adds an event listener to the submit-purchase-stripe button, so that when
 // clicked, opens the stripe modal for checkout
 
+const description = function () {
+  if (store.activeCart.cartProducts.length === 1) {
+    return store.activeCart.cartProducts.length + ' ' + 'Drop'
+  } else {
+    return store.activeCart.cartProducts.length + ' ' + 'Drops'
+  }
+}
+
 const checkout = function () {
   const handler = StripeCheckout.configure({
     key: 'pk_test_AFBOWpYyewj4wYgQD8iUWg2i',
-    image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+    image: 'https://res.cloudinary.com/ptavarez/image/upload/v1522251469/raincloud.jpg',
     locale: 'auto',
     token: function (token) {
       // This data is used by Stripe to generat a token
-      console.log('stripe total #1 SHOULD be: ', store.activeCart.total * 100)
+      // console.log('stripe total #1 SHOULD be: ', store.activeCart.total * 100)
       const tokenData = {
         token: {
           token_id: token.id,
@@ -40,7 +48,7 @@ const checkout = function () {
       checkoutApi.createToken(tokenData)
         .then((data) => {
           $('#cart-modal').modal('hide')
-          console.log('Payment Sent', data)
+          // console.log('Payment Sent', data)
           return data
         })
         .then(cartApi.purchasedTrue)
@@ -62,11 +70,11 @@ const checkout = function () {
       // `name` is the shop name, `description` is currently hard-coded
       // TODO maybe make description reference actual cart items
       name: 'RAINDROP',
-      description: '2 DROPS',
+      description: description(),
       // currently amount is hard-coded TODO make it ref cart total
       amount: parseInt((store.activeCart.total * 100).toFixed(2), 10)
     })
-    console.log('stripe total #2 SHOULD be: ', parseInt((store.activeCart.total * 100).toFixed(2), 10))
+    // console.log('stripe total #2 SHOULD be: ', parseInt((store.activeCart.total * 100).toFixed(2), 10))
     event.preventDefault()
   })
   // Close Checkout on page navigation:

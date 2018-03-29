@@ -14,8 +14,12 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
 
+      <!-- Favicon-->
+      <link rel="shortcut icon" type="image/png" href="http://res.cloudinary.com/ptavarez/image/upload/v1522250921/raindrop.png"/>
+
     </head>
     <body>
+      <div class="main-content">
 
       <!--NAVBAR Start -->
 
@@ -32,6 +36,23 @@
             </button>
           </div>
 
+          <div>
+            <!-- Search Products Form: -->
+            <form class="navbar-form navbar-left" id="search-products">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search Products">
+              </div>
+              <button type="submit" class="blue-btn btn btn-default navbar-btn">Search</button>
+            </form>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <!-- Test Buttons for sort price -->
+              <!-- <button type="button" id="sort-price-ascending" data-id="1"> Sort Products By Price (Low to High) </button>
+              <button type="button" id="sort-price-descending" data-id="-1"> Sort Products By Price (High to Low) </button> -->
+
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -39,23 +60,23 @@
                   <a id="all-products-button" href="#">Products<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                       <li>
-                        <a id="products-clothing" href="#" data-id="Clothing">Clothing <i class="icon-arrow-right"></i></a>
+                        <a class="products-clothing" href="#" data-id="Clothing">Clothing <i class="icon-arrow-right"></i></a>
                       </li>
                       <li>
-                        <a id="products-electronics" href="#" data-id="Electronics">Electronics <i class="icon-arrow-right"></i></a>
+                        <a class="products-electronics" href="#" data-id="Electronics">Electronics <i class="icon-arrow-right"></i></a>
                       </li>
                       <li>
-                        <a id="products-entertainment" href="#" data-id="Entertainment">Entertainment<i class="icon-arrow-right"></i></a>
+                        <a class="products-entertainment" href="#" data-id="Entertainment">Entertainment<i class="icon-arrow-right"></i></a>
                       </li>
                       <li>
-                        <a id="products-home-office" href="#" data-id="homeAndOffice">Home & Office<i class="icon-arrow-right"></i></a>
+                        <a class="products-home-office" href="#" data-id="homeAndOffice">Home & Office<i class="icon-arrow-right"></i></a>
                       </li>
                       <li>
-                        <a id="products-sports-outdoors" href="#" data-id="sportsAndOutdoors">Sports & Outdoors<i class="icon-arrow-right"></i></a>
+                        <a class="products-sports-outdoors" href="#" data-id="sportsAndOutdoors">Sports & Outdoors<i class="icon-arrow-right"></i></a>
                       </li>
                     </ul>
-              <li><a href="#" id="account-menu" data-toggle="modal" data-target="#user-profile">Account</a></li>
               <li><a href="#" id="cart-menu" data-toggle="modal" data-target="#cart-modal">Cart</a></li>
+              <li><a href="#" id="account-menu" data-toggle="modal" data-target="#user-profile">Account</a></li>
               <li><a href="#" id="sign-in-menu" data-toggle="modal" data-target="#sign-in-modal">Sign In</a></li>
               <li><a href="#" id="sign-up-menu" data-toggle="modal" data-target="#sign-up-modal">Sign Up</a></li>
               <li id="sign-out-menu"><a  href="#">Sign Out</a></li>
@@ -68,23 +89,24 @@
 
 <div class="container">
 
+
   <!-- Cart MODAL Start-->
       <div class="modal fade" id="cart-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" id="cart-inner" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+              <h4 class="modal-title" id="exampleModalLabel">Your Shopping Cart</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="padding-bottom: 3vh;">
               <div id="active-cart-content">
               </div>
               <div id="active-cart-total">
               </div>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button class="btn btn-primary" id="submit-purchase-stripe">Submit Purchase</button>
-
             </div>
           </div>
         </div>
@@ -96,7 +118,7 @@
         <div class="modal-dialog" id="sign-up-inner" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+              <h4 class="modal-title" id="exampleModalLabel">Sign Up</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -107,7 +129,7 @@
                   <div>
                   <div class="form-group col-sm-12">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="text" name="credentials[email]" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" name="credentials[email]" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
                   </div>
                   <div class="form-group col-sm-6">
                     <label for="exampleInputPassword">Password</label>
@@ -119,7 +141,6 @@
                   </div>
                 </div>
                 </fieldset>
-                <div class="col-sm-12" id="sign-up-modal-message"></div>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button id="register-button" type="submit" class="btn btn-primary">Register</button>
             </form>
@@ -134,21 +155,22 @@
         <div class="modal-dialog" id="change-password-inner" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="changePasswordModalLabel">Sign In</h5>
+              <h4 class="modal-title" id="changePasswordModalLabel">Sign In</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
             <form id="sign-in" class="form-group">
-              <h2>Sign In</h2>
               <div class="form-group" style="padding-left: 0px;">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="text" name="credentials[email]" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="email" name="credentials[email]" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
               </div>
               <div class="form-group" style="padding-left: 0px;">
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" name="credentials[password]" class="form-control" id="exampleInputPassword1" placeholder="Password">
               </div>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Sign in</button>
               <div style="float: right;" id="message"></div>
             </form>
@@ -159,32 +181,31 @@
           <!--SIGN IN MODAL End-->
 
       <!-- Account Start-->
-      <div id="user-account" class="row">
+      <div id="user-account" class="row" style="margin-top: 20px;">
                 <div class="col-md-6">
                   <h3>Change Password</h3>
                 <div class="modal-body">
                   <form id="change-password" class="form-group">
                     <fieldset id="changePasswordForms">
-                      <div>
-                      <div class="form-group col-sm-12">
-                        <label for="exampleInputPassword">Old Password</label>
-                        <input type="password" name="passwords[old]" class="form-control" aria-describedby="emailHelp" placeholder="Old Password">
-                      </div>
-                      <div class="form-group col-sm-12">
-                        <label for="exampleInputPassword">New Password</label>
-                        <input type="password" name="passwords[new]" class="form-control" aria-describedby="emailHelp" placeholder="New Password">
-                      </div>
+                    <div class="form-group" style="padding-left: 0px;">
+                      <label for="exampleInputPassword">Old Password</label>
+                      <input type="password" name="passwords[old]" class="form-control" aria-describedby="emailHelp" placeholder="Old Password">
                     </div>
-                    </fieldset>
-                    <div class="col-sm-12" id="change-password-modal-message"></div>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div>
+                      <label for="exampleInputPassword">New Password</label>
+                      <input type="password" name="passwords[new]" class="form-control" aria-describedby="emailHelp" placeholder="New Password">
+                    </div>
+                   </fieldset>
+                   <br>
                     <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                  </form>
                 </div>
               </div>
               <div class="col-md-6">
                 <h3>Past Purchases</h3>
-                <div id="past-purchases-content">
+                <br>
+                <h5 id="no-purchases"></h5>
+                <div id="past-purchases-content" style="border-color: #e7e7e7; background-color: #f8f8f8; padding: 0 20px; overflow-y: scroll; height:70vh;">
               </div>
             </div>
             </div>
@@ -200,48 +221,58 @@
 <p>The ultimate Digimon for all your command line needs</p>
 </div>
 </div>
-<div class="col-lg-3 col-md-6 header-small landing-wrapper">
-  <h1>
-  iBox ver. 2
-</h1>
+<div class="col-lg-3 col-md-6 header-small products-clothing landing-wrapper-1" data-id="Clothing">
+  <a href="#"><h2>
+  Clothing
+</h2>
+</a>
 </div>
-<div class="col-lg-3 col-md-6 header-small landing-wrapper">
-  <h1>
-  Dungeon
-</h1>
+<div class="col-lg-3 col-md-6 header-small products-electronics landing-wrapper-2" data-id="Electronics">
+  <a href="#"><h2>
+  Electronics
+</h2>
+</a>
 </div>
-<div class="col-lg-3 col-md-6 header-small landing-wrapper">
-  <h1>
-  Dragon
-</h1>
+<div class="col-lg-3 col-md-6 header-small products-entertainment landing-wrapper-3" data-id="Entertainment">
+  <a href="#"><h2>
+  Entertainment
+</h2>
+</a>
 </div>
-<div class="col-lg-3 col-md-6 header-small landing-wrapper">
-  <h1>
-  Water Bottle
-</h1>
+<div class="col-lg-3 col-md-6 header-small products-home-office landing-wrapper-4" data-id="homeAndOffice">
+  <a href="#"><h2>
+  Home & Office
+</h2>
+</a>
 </div>
 </div>
 <div class="container-fluid">
-          <div id="all-products-content" class="row">
-          </div>
+
+
+  <div id="product-detail-content" class="row">
+  </div>
+
+  <div id="all-products-content" class="row">
+  </div>
+
           <!-- All Products Form Start -->
           <div id="intro-see-all-products" class="col-sm-12" style="min-height:100px;">
             <button id="see-all-products" type="button" class="btn btn-primary center-block" style="margin-top:30px;">
               See All Products
             </button>
-
-            <!-- <button id="test-this-shit" type="button" data-id="Clothing" class="btn btn-primary center-block" style="margin-top:30px;">
-              I'm a test Button
-            </button> -->
-          </div>
+      </div>
           <!-- All Products Form End -->
 
           <div id="intro-about-raindrop" class="container text-center">
             <h2>About Raindrop and Wee</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc interdum velit id tortor elementum sollici fringilla. Vestibulum ante ipsum primis in faucibus orci citudin luctus et ultrices posuere cubilia Curae; Aenean vitae ex a purus sollicitudin finibus eget ut felis. Nam arcu velit, pretium nec pellentesque at, facilisis vitae lacus. </p>
+            <p>What exactly does that even mean, 'raindrop and wee'? We(e) asked
+              ourselves the same thing. But maybe it doesn't matter. What matters is
+              that we're here now. With you. In this wonderful realm of e-commerce.
+              Help us make you happy with our products, some special items we call
+              Raindrops.</p>
           </div>
+  </div>
 </div>
-
         <nav id="footer" class="navbar navbar-default navbar-bottom footer" style="margin-top: 50px; margin-bottom: 0;" role="navigation">
           <div class="container">
             <div class="col-md-4">

@@ -14,13 +14,13 @@ const onGetActiveCart = function (event) {
 }
 
 const onGetPastPurchases = function (event) {
-  console.log('Clicked see all past carts button')
+  // console.log('Clicked see all past carts button')
   store.pastPurchases ? cartUi.getPastPurchasesSuccess() : cartUi.getPastPurchasesFailure()
 }
 
 // only used for testing purposes, can delete once mvp is met
 const onGetCarts = function (event) {
-  console.log('Clicked see all carts button')
+  // console.log('Clicked see all carts button')
 
   cartApi.getCarts()
     // store all cart data locally, sort past carts, set cart totals
@@ -31,9 +31,9 @@ const onGetCarts = function (event) {
 
 const onGetOneCart = function (event) {
   event.preventDefault()
-  console.log('Clicked get one cart button')
+  // console.log('Clicked get one cart button')
   const cartId = $('#get-one-cart input').val()
-  console.log('cartId is: ', cartId)
+  // console.log('cartId is: ', cartId)
 
   cartApi.getOneCart(cartId)
     .then(cartUi.getOneCartSuccess)
@@ -44,11 +44,11 @@ const onGetOneCart = function (event) {
 // this once that testing form is no longer needed
 const onCreateCart = function (event) {
   event.preventDefault()
-  console.log('Clicked create cart button')
+  // console.log('Clicked create cart button')
 
   const data = getFormFields(this)
   data.cart.cartProducts = data.cart.cartProducts.split(' ')
-  console.log('new cart data is ', data.cart.cartProducts)
+  // console.log('new cart data is ', data.cart.cartProducts)
 
   cartApi.createCart(data)
     .then(cartUi.createCartSuccess)
@@ -58,13 +58,13 @@ const onCreateCart = function (event) {
 // only used for testing purposes, can delete once mvp is met
 const onUpdateCart = function (event) {
   event.preventDefault()
-  console.log('Clicked update cart button')
+  // console.log('Clicked update cart button')
 
   const cartId = $('#update-cart input').val()
-  console.log('cartId is: ', cartId)
+  // console.log('cartId is: ', cartId)
   const data = getFormFields(this)
   data.cart.cartProducts = data.cart.cartProducts.split(' ')
-  console.log('patch data is ', data)
+  // console.log('patch data is ', data)
 
   cartApi.updateCart(cartId, data)
     .then(cartUi.updateCartSuccess)
@@ -76,14 +76,14 @@ const onUpdateCart = function (event) {
 // If there is no active cart, calls onCreateNewCart() instead of cartApi.updateCart()
 const onAddToCart = function (event) {
   event.preventDefault()
-  console.log('Clicked add to cart button')
+  // console.log('Clicked add to cart button')
   const productId = $(this).attr('data-id')
   const updatedCart = cartParse.addItemToCart(productId)
   // if updatedCart === 'new cart needed'
   if (updatedCart === 'new cart needed') {
     onCreateNewCart(productId)
   } else {
-    console.log('Active cart now looks like...', updatedCart.data)
+    // console.log('Active cart now looks like...', updatedCart.data)
     cartApi.updateCart(store.activeCart._id, updatedCart.data)
       .then(cartUi.addToCartSuccess)
       .then(cartApi.getCarts)
@@ -95,7 +95,7 @@ const onAddToCart = function (event) {
 // Creates a new ACTIVE cart from a given product ID. Not to be confused with
 // onCreateCart(), which is used exclusively for the testing `create cart` form.
 const onCreateNewCart = function (productId) {
-  console.log('Creating a NEW cart since yours is empty my dude')
+  // console.log('Creating a NEW cart since yours is empty my dude')
 
   const data = {
     'cart': {
@@ -114,9 +114,9 @@ const onCreateNewCart = function (productId) {
 // deletes a selected item from cart. If cart has only one item, destroys the cart
 const onDeleteFromCart = function (event) {
   event.preventDefault()
-  console.log('Clicked remove from cart button')
+  // console.log('Clicked remove from cart button')
   const productId = $(this).attr('data-id')
-  console.log('Product ID is...', productId)
+  // console.log('Product ID is...', productId)
 
   // this function parses the remove item request, if successful, returns packaged
   // cart data for an AJAX request, if not, returns 'marked for deletion'
@@ -146,9 +146,9 @@ const onDeleteFromCart = function (event) {
 
 const onDeleteCart = function (event) {
   event.preventDefault()
-  console.log('Clicked delete cart button')
+  // console.log('Clicked delete cart button')
   const cartId = $('#delete-cart input').val()
-  console.log('cartId is: ', cartId)
+  // console.log('cartId is: ', cartId)
 
   cartApi.deleteCart(cartId)
     .then(cartUi.deleteCartSuccess)
